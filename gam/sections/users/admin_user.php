@@ -60,16 +60,15 @@ if($_POST['action']=='edit')
 }
 
 
-
 $itemEdit = array();
 if($_GET['item'])
 {
 	//--------------------Query-------------------
 	$action="update";
 	$cols="*";
-	$table="trivias";
-	$where="id_trivia = ".$_GET["item"];
-	$result=query($table,$cols,$where,false);
+	$table="users";
+	$where="id_usuario = ".$_GET["item"];
+	$result=query($table,$cols,$where,true);
 	if($result)
 		$itemEdit=$result[0];
 }
@@ -157,23 +156,31 @@ if($alert)
 			<div class="form-group">
 				<label class="col-lg-2 col-sm-2 control-label" for="asunto">Nombre</label>
 				<div class="col-lg-8">
-					<input type="text" required="required" id="name" name="name" value="<?=$itemEdit["name_trivia"]?>" class="form-control">
+					<input type="text" required="required" id="name" name="name" value="<?=$itemEdit["nombre_completo"]?>" class="form-control">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="col-lg-2 col-sm-2 control-label" for="asunto">Usuario</label>
 				<div class="col-lg-8">
-					<input type="text" required="required" id="user" name="user" value="<?=$itemEdit["name_trivia"]?>" class="form-control">
+					<input type="text" required="required" id="user" name="user" value="<?=$itemEdit["usuario"]?>" class="form-control">
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label class="col-lg-2 col-sm-2 control-label" for="asunto">Contraseña</label>
-				<div class="col-lg-8">
-					<input type="password" required="required" id="password" name="password" value="<?=$itemEdit["name_trivia"]?>" class="form-control">
+			<?php
+			if(!isset($_GET['item'])){
+			?>
+				<div class="form-group" >
+					<label class="col-lg-2 col-sm-2 control-label" for="asunto">Contraseña</label>
+					<div class="col-lg-8">
+						<input type="password" required="required" id="password" name="password" value="<?=$itemEdit["name_trivia"]?>" class="form-control">
+					</div>
 				</div>
-			</div>
+			<?php
+			}
+			?>
+
+			
 
 			<br>
 			<div class="text-center">
@@ -193,10 +200,10 @@ if($alert)
 <!---------------------------------------------------------------- LISTADO ----------------------------------------------------->
 <?php
 //--------------------Query-------------------
-$id="id_trivia";
+$id="id_usuario";
 $cols="*";
-$table="trivias";
-$where="1 ORDER BY date_ini ASC";
+$table="users";
+$where="1 ORDER BY nombre_completo ASC";
 $result=query($table,$cols,$where,false);
 ?>
 <div class="box box-warning">
@@ -217,9 +224,7 @@ $result=query($table,$cols,$where,false);
 	       <thead>
 	         <tr>
 				<td class="text-center"><b>Nombre</b></td>
-				<td class="text-center"><b>Fecha inicio</b></td>
-				<td class="text-center"><b>Fecha fin</b></td>
-				<td class="text-center"><b>Administrar</b></td>
+				<td class="text-center"><b>Usuario</b></td>
 				<td class="text-center"><b>Estado</b></td>
 				<td class="text-center"><b>Acciones</b></td>
 			 </tr>
@@ -231,14 +236,8 @@ $result=query($table,$cols,$where,false);
 					foreach ($result as $res) {
 					?>
 						<tr>
-							<td class="text-center"><?=$res["name_trivia"]?></td>
-							<td class="text-center"><?=$res["date_ini"]?></td>
-							<td class="text-center"><?=$res["date_end"]?></td>
-							<td class="text-center">
-								<a class="adminT" href="sections/trivia/modal_trivias.php?id_trivia=<?=$res["id_trivia"]?>">
-									<input type="button" value="Administrar" class="btn btn-info btn-xs"/> 
-								</a>
-							</td>
+							<td class="text-center"><?=$res["nombre_completo"]?></td>
+							<td class="text-center"><?=$res["usuario"]?></td>
 							<?php
 							if($res["estado"]==0)
 							{
@@ -254,7 +253,7 @@ $result=query($table,$cols,$where,false);
 							}
 							?>
 							<td class="text-center">
-								<a href="?section=trivia&module=admin_trivia&item=<?=$res["id_trivia"]?>" >
+								<a href="?section=users&module=admin_user&item=<?=$res["id_usuario"]?>" >
 									<input type="button" value="Editar" class="btn btn-primary btn-xs" />									
 								</a>
 								<?php
