@@ -1,0 +1,59 @@
+#tabla{ margin:auto; width:580px;
+	border:1px solid #999999; 
+	border-radius:10px; 
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.3); 
+}
+#tabla table{ width:580px; text-align:center; }
+#tabla th { background:green;
+   color:white;
+}	
+#tabla th:first-child {
+   border-radius:10px 0 0 0;
+}
+#tabla th:last-child{ border-radius:0 10px 0 0; }
+#tabla tr{ height:28px; }
+#tabla tr:nth-child(2n) { background:#ddd;}
+#tabla tr:hover{ background:#00FFFF; } 
+
+/*-------------pagination ----------------*/
+#sidebar-nav{ width:100%; float:right;}
+.pagination {
+	width:1200px; margin:auto; 
+	height: 40px; 
+	/*margin: 18px 0;*/
+}
+.pagination ul {
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+	display: inline-block;
+	margin-top: 0;
+	margin-left: 0;
+}
+.pagination li {
+	display: inline; width:45px;
+}
+.pagination a {    
+	background:#FFFFFF;
+	border-color: #DDDDDD;
+	border-style: solid;
+	border-width: 1px 1px 1px 0;
+	float: left;
+	line-height: 34px;
+	padding: 0 14px;
+	text-decoration: none;
+}
+.pagination a:hover, .pagination .active a {
+	background-color: #F5F5F5;
+}
+.pagination .active a {
+	color: #999999;
+	cursor: default;
+}
+
+.pagination li:first-child a {
+	border-left-width: 1px;
+	border-radius: 3px 0 0 3px;
+}
+.pagination li:last-child a {
+	border-radius: 0 3px 3px 0;
+}
