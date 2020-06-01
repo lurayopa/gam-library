@@ -2,7 +2,7 @@
 function connect()
 {
     //Local
-    $ms = new mysqli('mysql', 'root', 'root', 'trivia');
+    $ms = new mysqli('mysql', 'root', 'root', 'gam');
     $ms->set_charset("utf8");
     //Production
     // $ms = new mysqli('localhost', 'uqaacefzau', 'JPSrUmgRK9', 'uqaacefzau');
