@@ -2,10 +2,11 @@
 $action="create";
 if($_POST['action']=='create')
 {
-	$campos  = "name_trivia,date_ini,date_end";
-	$valores = "'$_POST[nombre]','$_POST[date_ini]','$_POST[date_end]'";
+	$password = encrypt($_POST["password"]);
+	$campos  = "nombre_completo,usuario,password";
+	$valores = "'$_POST[name]','$_POST[user]','$password'";
 	$alert=true;
-	if(add("trivias",$campos,$valores,0)){
+	if(add("users",$campos,$valores,0)){
 		$type="success";
 		$message = "Registro guardado correctamente";
 	}
@@ -115,8 +116,8 @@ if($_POST['action']=='update')
 <br>
 <section class="content-header">
     <h1>   
-      Administrador de Trivias
-      <small>trivias</small>
+      Administrador de Usuarios
+      <small>usuarios</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href=""><i class="fa fa-dashboard"></i>Inicio</a></li>
@@ -142,7 +143,7 @@ if($alert)
  <div class="box box-success">
    <div class="box-header with-border">
 	 <h3 style="margin:5px !important">
-       <i class="fa fa-external-link"></i>  Trivia
+       <i class="fa fa-external-link"></i>  Usuario
      </h3>
      <div class="box-tools pull-right">
        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -156,37 +157,24 @@ if($alert)
 			<div class="form-group">
 				<label class="col-lg-2 col-sm-2 control-label" for="asunto">Nombre</label>
 				<div class="col-lg-8">
-					<input type="text" required="required" id="nombre" name="nombre" value="<?=$itemEdit["name_trivia"]?>" class="form-control">
+					<input type="text" required="required" id="name" name="name" value="<?=$itemEdit["name_trivia"]?>" class="form-control">
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-lg-2 col-sm-2 control-label" for="asunto">Fecha inicio</label>	
-				<div class="col-lg-3">
-					<div class="input-group">
-						<div class="input-group-addon">
-						<i class="fa fa-calendar"></i>
-						</div>
-							<input type="text" id="date_ini" name="date_ini" class="form-control" value="<?=$itemEdit["date_ini"]?>" readonly="readonly" required="required">
-					</div>				
-				</div>
-				<label class="col-lg-2 col-sm-2 control-label" for="asunto">Fecha Fin</label>
-				<div class="col-lg-3">
-					<div class="input-group">
-						<div class="input-group-addon">
-						<i class="fa fa-calendar"></i>
-						</div>
-							<input type="text" id="date_end" name="date_end" class="form-control" value="<?=$itemEdit["date_end"]?>" readonly="readonly" onkeypress="return false;" required="required">
-					</div>				
+				<label class="col-lg-2 col-sm-2 control-label" for="asunto">Usuario</label>
+				<div class="col-lg-8">
+					<input type="text" required="required" id="user" name="user" value="<?=$itemEdit["name_trivia"]?>" class="form-control">
 				</div>
 			</div>
-			<script>
-				$(document).ready(function() 
-				{
-					campoFecha("date_ini");
-					campoFecha("date_end");
-				});
-			</script>
+
+			<div class="form-group">
+				<label class="col-lg-2 col-sm-2 control-label" for="asunto">Contraseña</label>
+				<div class="col-lg-8">
+					<input type="password" required="required" id="password" name="password" value="<?=$itemEdit["name_trivia"]?>" class="form-control">
+				</div>
+			</div>
+
 			<br>
 			<div class="text-center">
 				<input type="submit" class="btn btn-primary" value="Guardar" name="crear" onclick="asignarAccion('crear');" />
