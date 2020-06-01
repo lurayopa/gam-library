@@ -3,8 +3,6 @@ if(isset($_POST["txtUser"]))
 {
     $user = $_POST["txtUser"];
     $pass = $_POST["txtPassword"];
-    // $user = "admin";
-    // $pass = "";
     if(login($user,$pass)){
       header("location:index.php");
     }
