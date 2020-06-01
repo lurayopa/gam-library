@@ -68,17 +68,17 @@ if($_GET['item'])
 	$cols="*";
 	$table="users";
 	$where="id_usuario = ".$_GET["item"];
-	$result=query($table,$cols,$where,true);
+	$result=query($table,$cols,$where,false);
 	if($result)
 		$itemEdit=$result[0];
 }
 
 if($_POST['action']=='update')
 {
-	$cadena  = "name_trivia='".$_POST["nombre"]."',date_ini='".$_POST["date_ini"]."',date_end='".$_POST["date_end"]."'";
-	$where   = "id_trivia = '".$_POST["id_elemento"]."'";
+	$cadena  = "nombre_completo='".$_POST["name"]."',usuario='".$_POST["user"]."'";
+	$where   = "id_usuario = '".$_POST["id_elemento"]."'";
 	$alert= true;
-	if(update("trivias",$cadena,$where,0)){
+	if(update("users",$cadena,$where,0)){
 		$type="success";
 		$message = "Registro actualizado correctamente";
 	}
@@ -180,8 +180,6 @@ if($alert)
 			}
 			?>
 
-			
-
 			<br>
 			<div class="text-center">
 				<input type="submit" class="btn btn-primary" value="Guardar" name="crear" onclick="asignarAccion('crear');" />
@@ -189,7 +187,7 @@ if($alert)
 			<br>
 			
 			<input type="hidden" id="action" name="action" value="<?=$action?>" /> 
-			<input type="hidden" name="id_elemento" id="id_elemento" value="<?=$itemEdit["id_trivia"]?>">
+			<input type="hidden" name="id_elemento" id="id_elemento" value="<?=$itemEdit["id_usuario"]?>">
 			<!--Aqui se almacena el ID del elemento que se este modificando-->
 		</form>
 	   </div>
